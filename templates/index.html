@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aceso Care - Disease Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Align everything to the left */
+            background: white;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        .logo-section img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        .logo-section h1 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: flex-start; /* Menu closer to logo */
+            margin-left: 40px; /* Space between logo and menu */
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #2c3e50;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #3498db;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        form {
+            margin-top: 30px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+        }
+        .tagline {
+            font-size: 16px;
+            color: #555;
+            margin-top: -10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-section">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="AcesoCare Logo">
+            <h1>AcesoCare</h1>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <p class="tagline">Healing Through Innovation</p>
+        <form method="POST">
+            <input type="text" name="symptom" placeholder="Enter your symptoms..." required>
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction %}
+        <div class="result">
+            <p><b>Predicted Disease:</b> {{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
