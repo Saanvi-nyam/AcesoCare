@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      background-color: #0a2a43;
+      padding: 10px 20px;
+    }
+    .navbar img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .navbar h1 {
+      color: white;
+      font-size: 24px;
+      margin: 0;
+      flex-grow: 1;
+      text-align: left;
+    }
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    .result-box {
+      margin-top: 50px;
+      padding: 20px;
+      border: 2px solid #0a2a43;
+      border-radius: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Aceso Care Logo">
+    <h1>Aceso Care</h1>
+    <a href="/">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="result-box">
+    <h2>Prediction Result</h2>
+    <p><b>Symptom Entered:</b> {{ symptom }}</p>
+    <p><b>Predicted Disease:</b> {{ prediction }}</p>
+  </div>
+</body>
+</html>
