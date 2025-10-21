@@ -1,55 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Aceso Care - Disease Predictor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcesoCare - Symptom Checker</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            text-align: center;
             margin: 0;
-            padding: 50px;
-        }
-        h1 {
+            font-family: Arial, sans-serif;
+            background: #f9f9fb;
             color: #2c3e50;
         }
-        form {
-            margin-top: 30px;
+        header {
+            background: #1b2a4e;
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-container span {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .checker-container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .checker-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 30px;
         }
         input[type="text"] {
-            padding: 10px;
-            width: 300px;
-            border-radius: 5px;
+            width: 70%;
+            padding: 12px 15px;
             border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
         }
-        input[type="submit"] {
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        .submit-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            border: 2px solid #34495e;
+            border-radius: 25px;
+            background: transparent;
+            color: #34495e;
+            font-size: 16px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
-        input[type="submit"]:hover {
-            background: #2980b9;
+        .submit-btn:hover {
+            background: #34495e;
+            color: white;
+        }
+        .disclaimer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
         .result {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 20px;
             color: green;
         }
     </style>
 </head>
 <body>
-    <h1>🩺 Aceso Care - Disease Predictor</h1>
-    <form method="POST">
-        <input type="text" name="symptom" placeholder="Enter your symptoms..." required>
-        <input type="submit" value="Predict">
-    </form>
-    {% if prediction %}
-    <div class="result">
-        <p><b>Predicted Disease:</b> {{ prediction }}</p>
+    <header>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="AcesoCare Logo">
+            <span>AcesoCare</span>
+        </div>
+    </header>
+
+    <div class="checker-container">
+        <div class="checker-title">What symptoms are you experiencing today?</div>
+        <form method="POST">
+            <input type="text" name="symptom" placeholder="Example: I see blue veins on my thighs" required>
+            <br>
+            <input type="submit" class="submit-btn" value="Next →">
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <p><b>Predicted Disease:</b> {{ prediction }}</p>
+        </div>
+        {% endif %}
+
+        <div class="disclaimer">
+            <h3>Why this matters</h3>
+            <p>The more symptoms you tell us, the more accurate your results will be.</p>
+            <h3>Disclaimer</h3>
+            <p>
+                AcesoCare Symptom Checker is for informational purposes only and is not intended 
+                to constitute professional medical advice, diagnosis or treatment. Do not ignore 
+                or delay obtaining professional medical advice. Seek immediate medical assistance 
+                or call your doctor for emergencies.
+            </p>
+        </div>
     </div>
-    {% endif %}
 </body>
 </html>
